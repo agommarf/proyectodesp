@@ -3,22 +3,21 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Esto hará que el pipeline se ejecute cuando hagas push en la rama principal
   pull_request:
     branches:
-      - main
+      - main  # También se ejecutará para los pull requests hacia la rama principal
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Esto hace que se ejecute en un entorno de Ubuntu
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Esto descarga el código de tu repositorio
 
-      - name: Run a one-line script
-        run: echo "Hello, world!"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # Instala Node.js en el entorno
 
-      - name: Run a multi-line script
-        run: |
-          echo "Add other actions to build, test, and deploy your project."
+      - name: Run test script
+        run: node test.js  # Esto ejecuta el archivo test.js en Node.js
